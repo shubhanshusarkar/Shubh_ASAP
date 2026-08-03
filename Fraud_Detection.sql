@@ -9,14 +9,14 @@ BEGIN TRANSACTION;
 -- SCHEMA DEFINITIONS
 -- ----------------------------------------------------------------------------
 
-DROP TABLE IF EXISTS fraud_embeddings CASCADE;
-DROP TABLE IF EXISTS graph_edges CASCADE;
-DROP TABLE IF EXISTS graph_nodes CASCADE;
-DROP TABLE IF EXISTS claims CASCADE;
-DROP TABLE IF EXISTS devices CASCADE;
-DROP TABLE IF EXISTS bank_accounts CASCADE;
-DROP TABLE IF EXISTS service_providers CASCADE;
-DROP TABLE IF EXISTS policyholders CASCADE;
+DROP TABLE IF EXISTS fraud_embeddings;
+DROP TABLE IF EXISTS graph_edges;
+DROP TABLE IF EXISTS graph_nodes;
+DROP TABLE IF EXISTS claims;
+DROP TABLE IF EXISTS devices;
+DROP TABLE IF EXISTS bank_accounts;
+DROP TABLE IF EXISTS service_providers;
+DROP TABLE IF EXISTS policyholders;
 
 CREATE TABLE policyholders (
     policyholder_id VARCHAR(36) PRIMARY KEY,
