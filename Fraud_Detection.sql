@@ -1,8 +1,8 @@
 BEGIN TRANSACTION;
 
--- ----------------------------------------------------------------------------
+-- ============================================================================
 -- SCHEMA DEFINITIONS (SQLite Compatible)
--- ----------------------------------------------------------------------------
+-- ============================================================================
 
 DROP TABLE IF EXISTS fraud_embeddings;
 DROP TABLE IF EXISTS graph_edges;
@@ -79,9 +79,9 @@ CREATE TABLE fraud_embeddings (
 );
 
 
--- ----------------------------------------------------------------------------
+-- ============================================================================
 -- DATA INSERTION
--- ----------------------------------------------------------------------------
+-- ============================================================================
 
 INSERT INTO policyholders (policyholder_id, first_name, last_name, email) VALUES
   ('PH-00001', 'Joshua', 'Davis', 'joshua.davis1@example.com'),
@@ -235,7 +235,7 @@ INSERT INTO graph_nodes (node_id, node_type, entity_id, label) VALUES
 
 INSERT INTO graph_edges (edge_id, source_node_id, target_node_id, relationship_type, weight) VALUES
   ('E-000001', 'N-PH-00001', 'N-PRV-00501', 'SERVICED_BY', 1.0),
-  ('E-000002', 'N-PH-00001', 'N-BA-00551', 'USES_BANK_ACCOUNT', 1.0);
+  ('E-000002', 'N-PH-00001', 'N-BA-00001', 'USES_BANK_ACCOUNT', 1.0);
 
 INSERT INTO fraud_embeddings (library_id, pattern_type, description, embedding, severity_level) VALUES
   ('LIB-001', 'Overcharging Medical Network', 'Staged vehicle theft; device fingerprint matches 3 other flagged claims.', '[-0.9817, -0.1391, -0.4142, -0.5376, -0.9856, -0.2527, -0.1765, 0.1211]', 'HIGH'),
