@@ -295,10 +295,6 @@ INSERT INTO historical_fraud_patterns (pattern_id, fraud_type, embedding_text, r
 -- enrich.sql
 -- =====================================
 
-ALTER TABLE claims ADD COLUMN bank_account TEXT;
-ALTER TABLE claims ADD COLUMN address TEXT;
-ALTER TABLE claims ADD COLUMN fraud_label INTEGER DEFAULT 0;
-
 UPDATE claims SET bank_account = 'BANK001', address = 'ADDR001', fraud_label = 1 WHERE claim_id = 'CLM0001';
 UPDATE claims SET bank_account = 'BANK002', address = 'ADDR002', fraud_label = 1 WHERE claim_id = 'CLM0002';
 UPDATE claims SET bank_account = 'BANK003', address = 'ADDR003', fraud_label = 0 WHERE claim_id = 'CLM0003';
@@ -321,13 +317,6 @@ INSERT OR IGNORE INTO claim_relationships VALUES
   ('CLM0008','ADDRESS','ADDR001'),
   ('CLM0009','ADDRESS','ADDR006'),
   ('CLM0010','ADDRESS','ADDR002');
-
-ALTER TABLE verification_records ADD COLUMN bank_account_verified INTEGER DEFAULT 1;
-ALTER TABLE verification_records ADD COLUMN device_reuse_count INTEGER DEFAULT 0;
-ALTER TABLE verification_records ADD COLUMN shared_bank_count INTEGER DEFAULT 0;
-ALTER TABLE verification_records ADD COLUMN shared_address_count INTEGER DEFAULT 0;
-ALTER TABLE verification_records ADD COLUMN provider_risk TEXT DEFAULT 'Low';
-ALTER TABLE verification_records ADD COLUMN verification_summary TEXT;
 
 UPDATE verification_records SET device_reuse_count = 3, shared_bank_count = 3, shared_address_count = 3, provider_risk = 'High', verification_summary = 'Device DEV001 reused across 3 claims; bank BANK001 shared by 3 policyholders; address ADDR001 shared by 3 claims; provider PROV002 flagged.' WHERE claim_id = 'CLM0001';
 UPDATE verification_records SET device_reuse_count = 2, shared_bank_count = 3, shared_address_count = 3, provider_risk = 'High', verification_summary = 'Provider PROV001 appears in 4 claims; bank BANK002 shared by 3 policyholders; address ADDR002 shared by 3 claims.' WHERE claim_id = 'CLM0002';
